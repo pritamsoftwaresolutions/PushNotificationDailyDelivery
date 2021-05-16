@@ -3,11 +3,11 @@ import * as adminfunctions from "firebase-admin";
 
 const rf = functions.region("asia-east2");
 
-console.log("Hello PUSH NOTIFICATION TESTING ");
+console.log("Hello PUSH NOTIFICATION TESTING 5");
 adminfunctions.initializeApp(functions.config().firebase);
 
 export const helloworld = rf.https.onRequest((_request, response) => {
-response.send("pushNotifications------***** 55 firebase");
+response.send("pushNotifications------*****  firebase");
 });
 
 const e = "/dailydelivery/AFHbRPNcrBUVRWz0Aj4j";
