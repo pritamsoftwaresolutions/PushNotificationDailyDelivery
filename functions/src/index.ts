@@ -7,31 +7,37 @@ console.log("Hello PUSH NOTIFICATION TESTING 5");
 adminfunctions.initializeApp(functions.config().firebase);
 
 export const helloworld = rf.https.onRequest((_request, response) => {
-response.send("pushNotifications------*****  hello firebase");
+response.send("pushNotifications------*****  mobile wildcard ALL firebase");
 });
 
-const e = "/dailydelivery/AFHbRPNcrBUVRWz0Aj4j";
+const e = "/customers";
 console.log("Hello PUSH NOTIFICATION TESTING "+e);
 exports.updateUser = rf.firestore
-    .document("dailydelivery/AFHbRPNcrBUVRWz0Aj4j")
+    .document("/customers/{mobile}")
     .onUpdate((change, context) => {
-        console.log("NONONONONO 7 IN UPDATE Function "+e);
+        console.log("16 May UPDATE Function "+e);
       // Get an object representing the document
       // e.g. {'name': 'Marie', 'age': 66}
       const newValue = change.after.data();
-      console.log("IN UPDATE Function "+newValue.name);
+      console.log("New Delivered status "+newValue.delivered);
       // ...or the previous value before this update
       const previousValue = change.before.data();
-      console.log("PDATE Function "+previousValue.name);
+      console.log("Previous Delivered status "+previousValue.delivered);
       // access a particular field as you would any JS property
-      const name = newValue.name;
-      console.log("UPDATE Function "+name);
-
+      const delivered = newValue.delivered;
+      const customername = newValue.name;
+      console.log("Customer Name "+customername);
+      let dt ="Good Morning! "+customername+" sir. Milk is delivered";
+      let db ="Good Morning! "+customername+" sir. Milk is delivered at & by";
+if (delivered == "N") {
+      dt="Good Morning! "+customername+" sir. Milk delivery is reverted";
+      db ="Good Morning! "+customername+" sir. Milk deliverery is reverted";
+    }
       // perform desired operations ...
       const p = {
         notification: {
-            title: "Hello device TESTING9",
-            body: "Hello device TESTING9-BODY",
+            title: dt,
+            body: db,
             sound: "default",
         },
     };
