@@ -7,7 +7,7 @@ console.log("Hello PUSH NOTIFICATION TESTING 5");
 adminfunctions.initializeApp(functions.config().firebase);
 
 export const helloworld = rf.https.onRequest((_request, response) => {
-response.send("pushNotifications------*****  firebase");
+response.send("pushNotifications------*****  hello firebase");
 });
 
 const e = "/dailydelivery/AFHbRPNcrBUVRWz0Aj4j";
