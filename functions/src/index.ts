@@ -7,7 +7,7 @@ console.log("Hello PUSH NOTIFICATION TESTING 67");
 adminfunctions.initializeApp(functions.config().firebase);
 
 export const milkDelivery = rf.https.onRequest((_request, response) => {
-response.send("pushNotifications------*****  mobile wildcard ALL   firebase");
+response.send("pushNotifications------*****    mobile wildcard ALL   firebase");
 });
 
 // const e = "/customers";  ///dailydeliveries/2021-06-12T20:18:54.704494
