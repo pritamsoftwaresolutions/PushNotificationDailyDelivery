@@ -3,35 +3,38 @@ import * as adminfunctions from "firebase-admin";
 
 const rf = functions.region("asia-east2");
 
-console.log("Hello PUSH NOTIFICATION TESTING 5");
+console.log("Hello PUSH NOTIFICATION TESTING 67");
 adminfunctions.initializeApp(functions.config().firebase);
 
-export const helloworld = rf.https.onRequest((_request, response) => {
-response.send("pushNotifications------*****  mobile wildcard ALL firebase");
+export const milkDelivery = rf.https.onRequest((_request, response) => {
+response.send("pushNotifications------*****  mobile wildcard ALL   firebase");
 });
 
-const e = "/customers";
-console.log("Hello PUSH NOTIFICATION TESTING "+e);
+// const e = "/customers";  ///dailydeliveries/2021-06-12T20:18:54.704494
+const e = "/dailydeliveries/2021-06-12T20:18:54.704494";
+console.log("Hello 23 PUSH NOTIFICATION TESTING "+e);
 exports.updateUser = rf.firestore
-    .document("/customers/{mobile}")
+    .document("/dailydeliveries/2021-06-12T20:18:54.704494")
     .onUpdate((change, context) => {
-        console.log("16 May UPDATE Function "+e);
+        console.log("23 June UPDATE Function token1 token1 "+e);
       // Get an object representing the document
       // e.g. {'name': 'Marie', 'age': 66}
       const newValue = change.after.data();
-      console.log("New Delivered status "+newValue.delivered);
+      console.log("New Delivered status "+newValue.status);
       // ...or the previous value before this update
       const previousValue = change.before.data();
-      console.log("Previous Delivered status "+previousValue.delivered);
+      console.log("Previous Delivered status "+previousValue.status);
       // access a particular field as you would any JS property
-      const delivered = newValue.delivered;
-      const customername = newValue.name;
+      const delivered = newValue.status;
+      const customername = newValue.custName;
+      const token1 = newValue.custToken;
       console.log("Customer Name "+customername);
-      let dt ="Good Morning! "+customername+" sir. Milk is delivered";
-      let db ="Good Morning! "+customername+" sir. Milk is delivered at & by";
+      console.log("token1 "+token1);
+      let dt ="Good Morning! "+customername+" Sir/Madam. Milk is delivered";
+      let db ="Good Morning! "+customername+" Sir/Madam. Milk is delivered";
 if (delivered == "N") {
-      dt="Good Morning! "+customername+" sir. Milk delivery is reverted";
-      db ="Good Morning! "+customername+" sir. Milk deliverery is reverted";
+      dt="Good Morning! "+customername+"Sir/Madam.Milk delivery is reverted";
+      db="Good Morning!"+customername+"Sir/Madam.Milk deliverery is reverted";
     }
       // perform desired operations ...
       const p = {
@@ -54,10 +57,8 @@ if (delivered == "N") {
         priority: "high",
         timeToLive: 60 * 60 * 24,
     };
-    const t1 ="dxmfa6O7Qam4031rUbpZUs:APA91bGz7g_fcKSmr6yPA3t3ib5OgZIDdL";
-    const t2=t1+"RoEovjjOXRhq4gR9Gd5mZI2COdT4AU8dxNejbAO3EnfyyUl2F_";
-    const t3 =t2+"UcxY9MHc6PAmjOL6p7-TI13-uY2RoS1WOr616aZjHFXa1sJvfLAq7Ouy";
-    adminfunctions.messaging().sendToDevice(t3, p);
+
+    adminfunctions.messaging().sendToDevice(token1, p);
     console.log("Notifications have been sent and tokens cleaned up.");
     return adminfunctions.messaging().sendToTopic("PUSHNOTI", p1, op);
     });
