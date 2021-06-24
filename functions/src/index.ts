@@ -3,20 +3,20 @@ import * as adminfunctions from "firebase-admin";
 
 const rf = functions.region("asia-east2");
 
-console.log("Hello PUSH NOTIFICATION TESTING 67");
+console.log("Hello PUSH NOTIFICATION TESTING 69");
 adminfunctions.initializeApp(functions.config().firebase);
 
-export const milkDelivery = rf.https.onRequest((_request, response) => {
+export const getCSHFreeToken = rf.https.onRequest((_request, response) => {
 response.send("pushNotifications------*****    mobile wildcard ALL   firebase");
 });
 
 // const e = "/customers";  ///dailydeliveries/2021-06-12T20:18:54.704494
-const e = "/dailydeliveries/2021-06-12T20:18:54.704494";
-console.log("Hello 23 PUSH NOTIFICATION TESTING "+e);
-exports.updateUser = rf.firestore
-    .document("/dailydeliveries/2021-06-12T20:18:54.704494")
+const e = "/dailydeliveries";
+console.log("Hello 24 June PUSH NOTIFICATION TESTING "+e);
+exports.updateMilkDelivery = rf.firestore
+    .document("/dailydeliveries/{id}")
     .onUpdate((change, context) => {
-        console.log("23 June UPDATE Function token1 token1 "+e);
+        console.log("24 June UPDATE Function token1 token1 "+e);
       // Get an object representing the document
       // e.g. {'name': 'Marie', 'age': 66}
       const newValue = change.after.data();
@@ -32,7 +32,7 @@ exports.updateUser = rf.firestore
       console.log("token1 "+token1);
       let dt ="Good Morning! "+customername+" Sir/Madam. Milk is delivered";
       let db ="Good Morning! "+customername+" Sir/Madam. Milk is delivered";
-if (delivered == "N") {
+if (delivered == "loaded") {
       dt="Good Morning! "+customername+"Sir/Madam.Milk delivery is reverted";
       db="Good Morning!"+customername+"Sir/Madam.Milk deliverery is reverted";
     }
