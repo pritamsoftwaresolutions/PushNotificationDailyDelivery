@@ -46,7 +46,7 @@ then((querySnapshot) => {
     myJsonObject["custAddress"] = "Palladium Homes";
     myJsonObject["custToken"] = userObject["custToken"];
     myJsonObject["route"] ="";
-    myJsonObject["month"] = month;
+    myJsonObject["month"] = month+1;
     myJsonObject["onVacation"]="no";
    console.log("(vstart < Date.now() && Date.now() < vend) : "+
    (vstart <= Date.now() && Date.now() <=vend));
