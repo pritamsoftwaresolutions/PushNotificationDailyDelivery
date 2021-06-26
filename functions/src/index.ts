@@ -13,7 +13,7 @@ const dddate4 = new Date(Date.UTC(dddate.getUTCFullYear(), dddate.getUTCMonth(),
 dddate.getUTCDate()-1, 18, 30, 0, 0));
 console.log("dddate1 : "+dddate4);
 const epochy = Date.parse(dddate4.toString());
-console.log("epochDate : "+epochy);
+console.log("epochDate  : "+epochy);
 adminfunctions.firestore().collection("customers1").get().
 then((querySnapshot) => {
     const tempDoc = querySnapshot.docs.map(async (doc) => {
