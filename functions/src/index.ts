@@ -5,7 +5,7 @@ const rf = functions.region("asia-east2");
 
 adminfunctions.initializeApp(functions.config().firebase);
 export const creatRouteSummary = rf.https.onRequest((_request, response) => {
-    console.log("CALLED creatRouteSummary 1 : Date.now() "+Date.now());
+    console.log("CALLED creatRouteSummary 122 : Date.now() "+Date.now());
     let ii=0;
     const dddate = new Date();
     const dddate4 = new Date(Date.UTC(dddate.getUTCFullYear(),
@@ -50,13 +50,17 @@ export const creatRouteSummary = rf.https.onRequest((_request, response) => {
             console.log("creatRouteSummary :ii : "+ii+": doc.id : "+doc.id);
             const ddObject = JSON.parse(JSON.stringify(doc.data()));
             const onVacation1 = ddObject["onVacation"];
-            if (onVacation1 == "YES") {
+            console.log("onVacation1 : "+onVacation1);
+            if (onVacation1 == "NO") {
+                console.log("onVacation1 == NO :ddObject[cow]: "+
+                ddObject["cow"]);
                 const cow1 = ddObject["cow"];
                 const buf1 = ddObject["buf"];
                 totalCow = totalCow + cow1;
                 totalBuf = totalBuf + buf1;
             console.log("totalCow: "+totalCow+" totalBuf: "+totalBuf);
             } else {
+                console.log("onVacation1 == YES YES ");
             totalCustomerOnVacation= totalCustomerOnVacation+1;
             }
             });
@@ -87,6 +91,10 @@ export const creatRouteSummary = rf.https.onRequest((_request, response) => {
             myJsonObject["TBufDelivered"] = 0;
             myJsonObject["TCowDelivered"] = 0;
             myJsonObject["deliveryDate"] =epochy;
+            totalCow=0;
+            totalBuf=0;
+            totalCustomer=0;
+            totalCustomerOnVacation=0;
             await adminfunctions.firestore()
             .doc("ddroutesummary/"+ii+Date.now()).set(myJsonObject);
                   });
@@ -94,7 +102,7 @@ export const creatRouteSummary = rf.https.onRequest((_request, response) => {
 });
 
 export const createDailyDelivery = rf.https.onRequest((_request, response) => {
-console.log("CALLED ecreateDailyDelivery 21 : Date.now() "+Date.now());
+console.log("CALLED ecreateDailyDelivery 500 : Date.now() "+Date.now());
 let ii=0;
 const dddate = new Date();
 const month = dddate.getUTCMonth();
@@ -167,7 +175,7 @@ then((querySnapshot) => {
           });
         });
     myJsonObject["month"] = month+1;
-    myJsonObject["onVacation"]="no";
+    myJsonObject["onVacation"]="NO";
    console.log("(vstart < Date.now() && Date.now() < vend) : "+
    (vstart <= Date.now() && Date.now() <=vend));
    if (vstart < Date.now() && Date.now() < vend) {
