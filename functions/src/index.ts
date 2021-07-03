@@ -153,6 +153,7 @@ then((querySnapshot) => {
     myJsonObject["status"] = "started";
     myJsonObject["custId"] = userObject["uuid"];
     myJsonObject["custName"] = userObject["custName"];
+    myJsonObject["custEmail"] = userObject["custEmail"];
     myJsonObject["custMobile"] = userObject["custMobile"];
     myJsonObject["custAddress"] = userObject["custAddress"];
     myJsonObject["custToken"] = userObject["custToken"];
